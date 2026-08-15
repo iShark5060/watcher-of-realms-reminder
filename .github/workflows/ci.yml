@@ -14,6 +14,7 @@ on:
       - 'src/**'
       - 'package.json'
       - 'pnpm-lock.yaml'
+      - '.npmrc'
       - 'ecosystem.config.cjs'
       - 'run-quality-checks.mjs'
       - '.env.production'
@@ -199,11 +200,9 @@ jobs:
             exit 1
           fi
           mkdir -p /tmp/deploy
-          cp -r src/ /tmp/deploy/
-          cp package.json /tmp/deploy/
-          cp -r node_modules/ /tmp/deploy/
-          cp ecosystem.config.cjs /tmp/deploy/
-          cp .env.production /tmp/deploy/
+          cp -r src /tmp/deploy/
+          cp package.json pnpm-lock.yaml ecosystem.config.cjs .env.production .npmrc /tmp/deploy/
+          rsync -a --copy-links node_modules/ /tmp/deploy/node_modules/
           printf 'DOTENV_PRIVATE_KEY_PRODUCTION=%s\n' "$DOTENV_PRIVATE_KEY_PRODUCTION" > /tmp/deploy/.env.keys
           chmod 600 /tmp/deploy/.env.keys
           test -s /tmp/deploy/.env.keys || { echo "ERROR: Failed to create .env.keys in deployment bundle."; exit 1; }
