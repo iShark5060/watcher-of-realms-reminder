@@ -1,0 +1,41 @@
+{
+  "name": "wor-code-reminder",
+  "version": "1.0.0",
+  "description": "Discord bot that posts Watcher of Realms promo codes and dismisses them on reaction.",
+  "keywords": [],
+  "homepage": "https://github.com/iShark5060/watcher-of-realms-reminder#readme",
+  "bugs": {
+    "url": "https://github.com/iShark5060/watcher-of-realms-reminder/issues"
+  },
+  "license": "MIT",
+  "author": "Shark5060",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iShark5060/watcher-of-realms-reminder.git"
+  },
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "scrape": "node src/scrape.js",
+    "lint": "oxlint --node-plugin --promise-plugin --import-plugin .",
+    "format": "oxfmt --write .",
+    "check-format": "oxfmt --check .",
+    "validate": "node run-quality-checks.mjs"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^2.21.0",
+    "cheerio": "^1.2.0",
+    "discord.js": "^14.27.0"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0"
+  },
+  "engines": {
+    "node": ">=26.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "packageManager": "pnpm@11.21.0"
+}
