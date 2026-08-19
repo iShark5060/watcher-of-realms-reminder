@@ -6,9 +6,9 @@
 ![Node](https://img.shields.io/badge/Node-%3E%3D26-339933?logo=node.js&logoColor=white)
 [![Cursor](https://img.shields.io/badge/Cursor-IDE-141414?logo=cursor&logoColor=white)](https://cursor.com)
 
-A small Discord bot that scrapes [Prospector promo codes](https://prospector.gg/promo-codes/) every few minutes, posts one message per active Watcher of Realms code, and never shows a code again after you react to it.
+A Discord bot that scrapes [Prospector promo codes](https://prospector.gg/promo-codes/) every few minutes, posts one message per active Watcher of Realms code, and never shows a code again after you react to it.
 
-React with **any emoji** after you redeem a code in-game. The bot deletes that message and stores the code so a later re-issue will not ping you again.
+React with any emoji after you redeem a code in-game. The bot deletes that message and stores the code so a later re-issue will not ping you again.
 
 ## Requirements
 
