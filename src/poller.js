@@ -27,7 +27,7 @@ export function createPoller({ config, database, bot }) {
   async function pollOnce() {
     const active = await scrapePromoCodes(config.promoCodesUrl);
     if (active.length === 0) {
-      log.warn('Scrape returned no active codes; leaving existing messages untouched');
+      log.info('Scrape returned no active codes; leaving existing messages untouched');
       return;
     }
 
