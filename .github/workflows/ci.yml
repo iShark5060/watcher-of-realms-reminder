@@ -102,17 +102,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - name: Setup pnpm and Node.js
+        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
-
-      - name: Install dependencies (fresh lockfile)
-        uses: ./.github/actions/pnpm-install-fresh
+          runtime: node@${{ env.NODE_VERSION }}
+          cache: true
+          require-lockfile: true
 
       - name: Run quality checks
         run: pnpm run validate
@@ -128,17 +123,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
+      - name: Setup pnpm and Node.js
+        uses: pnpm/setup@703c52620218391530e48b9e8870d5c0082e1b9b # v2.1.0
         with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'pnpm'
-
-      - name: Install dependencies (fresh lockfile)
-        uses: ./.github/actions/pnpm-install-fresh
+          runtime: node@${{ env.NODE_VERSION }}
+          cache: true
+          require-lockfile: true
 
       - name: Setup SSH
         env:
