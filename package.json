@@ -25,7 +25,7 @@
     "validate": "node run-quality-checks.mjs"
   },
   "dependencies": {
-    "@dotenvx/dotenvx": "^2.28.1",
+    "@dotenvx/dotenvx": "^2.28.2",
     "cheerio": "^1.2.0",
     "discord.js": "^14.27.0"
   },
