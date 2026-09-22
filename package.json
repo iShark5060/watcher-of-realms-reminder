@@ -19,6 +19,7 @@
     "start": "node src/index.js",
     "dev": "node --watch src/index.js",
     "scrape": "node src/scrape.js",
+    "check:scrape": "node src/scrape.check.js",
     "lint": "oxlint --node-plugin --promise-plugin --import-plugin .",
     "format": "oxfmt --write .",
     "check-format": "oxfmt --check .",

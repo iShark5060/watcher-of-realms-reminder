@@ -25,7 +25,7 @@ export function loadConfig() {
     databasePath: optional('DATABASE_PATH', './data/reminder.db'),
     promoCodesUrl: optional(
       'PROMO_CODES_URL',
-      'https://prospector.gg/promo-codes/?ppcb_status=active',
+      'https://prospector.gg/promo-codes/?promo_status=active',
     ),
   };
 }
