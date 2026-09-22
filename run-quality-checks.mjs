@@ -11,6 +11,7 @@ if (preflight.status !== 0) {
 const steps = [
   { name: 'Formatting', command: 'pnpm run check-format' },
   { name: 'Lint', command: 'pnpm run lint' },
+  { name: 'Scrape check', command: 'pnpm run check:scrape', detectWarnings: false },
 ];
 
 const results = [];
