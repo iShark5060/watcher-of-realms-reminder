@@ -1,9 +1,5 @@
 name: WoR Code Reminder CI/CD
 
-permissions:
-  contents: read
-  pull-requests: read
-
 env:
   NODE_VERSION: 26
 
