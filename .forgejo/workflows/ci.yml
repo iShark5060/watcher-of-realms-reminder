@@ -17,7 +17,7 @@ on:
       - 'ecosystem.config.cjs'
       - 'run-quality-checks.mjs'
       - '.env.production'
-      - '.github/workflows/ci.yml'
+      - '.forgejo/workflows/ci.yml'
   workflow_dispatch:
 
 concurrency:
@@ -26,7 +26,7 @@ concurrency:
 
 jobs:
   deployment-check:
-    runs-on: ubuntu-latest
+    runs-on: build-node26
     timeout-minutes: 10
 
     outputs:
@@ -34,9 +34,11 @@ jobs:
 
     steps:
       - name: Checkout full history
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
+      - name: Install host tools
+        run: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-client rsync
 
       - name: Check if changes require deployment
         id: decide
@@ -92,7 +94,7 @@ jobs:
           echo "Reason: Only devDependencies or lockfile changed"
 
   validate:
-    runs-on: ubuntu-latest
+    runs-on: build-node26
     timeout-minutes: 10
 
     needs: [deployment-check]
@@ -100,20 +102,21 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install host tools
+        run: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-client rsync
 
-      - name: Setup pnpm and Node.js
-        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
-        with:
-          runtime: node@${{ env.NODE_VERSION }}
-          cache: true
-          require-lockfile: true
+      - name: Enable pnpm
+        run: npm install -g pnpm@12.6.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Run quality checks
         run: pnpm run validate
 
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: build-node26
     timeout-minutes: 10
 
     needs: [deployment-check, validate]
@@ -121,14 +124,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Install host tools
+        run: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-client rsync
 
-      - name: Setup pnpm and Node.js
-        uses: pnpm/setup@fbda4c85fc2e1e08721cd8763afea8f48d60f024 # v3.0.0
-        with:
-          runtime: node@${{ env.NODE_VERSION }}
-          cache: true
-          require-lockfile: true
+      - name: Enable pnpm
+        run: npm install -g pnpm@12.6.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
       - name: Setup SSH
         env:
@@ -252,7 +256,7 @@ jobs:
         run: rm -f ~/.ssh/deploy_key
 
   discord-status:
-    runs-on: ubuntu-latest
+    runs-on: build-node26
     timeout-minutes: 10
     needs: [deployment-check, validate, build-and-deploy]
     if: ${{ always() && github.ref == 'refs/heads/main' }}
