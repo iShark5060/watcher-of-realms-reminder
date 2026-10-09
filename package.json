@@ -27,17 +27,17 @@
   },
   "dependencies": {
     "@dark-avian-labs/sentinel-agent": "https://github.com/Dark-Avian-Labs/Sentinel/releases/download/agent-v0.1.0/dark-avian-labs-sentinel-agent-0.1.0.tgz",
-    "@dotenvx/dotenvx": "^2.31.1",
+    "@dotenvx/dotenvx": "^2.33.0",
     "cheerio": "^1.2.0",
     "discord.js": "^14.27.0"
   },
   "devDependencies": {
-    "oxfmt": "^0.71.0",
-    "oxlint": "^1.86.0"
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0"
   },
   "engines": {
     "node": ">=26.0.0",
     "pnpm": ">=11.0.0"
   },
-  "packageManager": "pnpm@11.24.0"
+  "packageManager": "pnpm@12.10.1"
 }
