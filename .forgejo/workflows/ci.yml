@@ -34,7 +34,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install host tools
-        run: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y openssh-client rsync
+        run: apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y jq openssh-client rsync
 
       - name: Check if changes require deployment
         id: decide
