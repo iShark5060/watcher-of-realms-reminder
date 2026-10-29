@@ -108,12 +108,7 @@ export function parsePromoPage(html) {
         $label.find('b').remove();
         return {
           name: $label.text().trim() || $reward.find('img').attr('alt')?.trim() || '',
-          qty: $reward
-            .find('b')
-            .first()
-            .text()
-            .trim()
-            .replace(/^×\s*/, ''),
+          qty: $reward.find('b').first().text().trim().replace(/^×\s*/, ''),
           image: $reward.find('img').attr('src') || '',
         };
       })
