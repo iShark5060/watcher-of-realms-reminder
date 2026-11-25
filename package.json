@@ -32,8 +32,8 @@
     "discord.js": "^14.28.1"
   },
   "devDependencies": {
-    "oxfmt": "^0.79.0",
-    "oxlint": "^1.94.0"
+    "oxfmt": "^0.80.0",
+    "oxlint": "^1.95.0"
   },
   "engines": {
     "node": ">=26.0.0",
